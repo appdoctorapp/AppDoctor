@@ -1,0 +1,37 @@
+# App Doctor Free Beta — Known limitations
+
+These limitations apply to the current 0.1.0-beta.2 Free Beta.
+
+## UI coverage
+
+- Best coverage is expected for WPF, WinForms, WinUI, and conventional Win32 applications that expose useful Windows UI Automation metadata.
+- App Doctor can follow one narrowly verified UI handoff only when the selected launch creates exactly one new same-executable direct child with a visible UI Automation window. Pre-existing, different-executable, or ambiguous multiple candidates are not adopted.
+- Shell-mediated packaged-app activation can remain unsupported when Windows does not expose a trustworthy caller-to-package-process relationship. The current Windows Calculator launcher path is a confirmed example.
+- Electron applications can move their visible UI across processes or reuse already-running processes in ways that may fall outside the safe handoff rule.
+- Games, DirectX/custom-rendered UI, browser canvases, remote surfaces, secure desktops, and other interfaces without useful accessibility metadata can be Limited or Unsupported.
+- App Doctor does not use blind coordinate clicking to claim coverage where semantic UI Automation data is unavailable.
+
+## Safety and side effects
+
+- App Doctor skips identified destructive/high-risk actions, but UI Automation still invokes real application behavior. Incorrectly labelled controls or unusual application behavior can still cause side effects.
+- Use test accounts, disposable data, and backups for applications that can modify important data or systems.
+- App Doctor is not a VM or security sandbox.
+
+## Detection limits
+
+- Layout observations based on UIA bounding rectangles can produce low-confidence observations; not every clipping or overlap finding is visually provable from UIA alone.
+- A single UI Automation timeout is not treated as proof of a permanent application hang.
+- Normal application exit is not treated as a crash solely because the process ended.
+- Scan bounds, time limits, accessibility quality, and dynamic UI can prevent complete state coverage.
+
+## Environment validation still pending
+
+- No broad compatibility certification has been completed across third-party Win32/WinForms/WinUI/Electron applications.
+- The current Windows 11 QA machine was exercised at its active 100% (96 DPI) scale and at 900x600 and 1600x1000 window sizes. Physical multi-monitor DPI transitions and alternate system scale factors remain unvalidated.
+- A separate Windows 10 machine has not yet been used for final validation.
+- The EXE and source-folder pickers and Explorer EXE drag/drop have been click-through tested on the current Windows 11 QA machine.
+- Optional OpenAI visual review has not been validated using a live paid API request; account entitlement, billing, and provider-side availability remain user-specific.
+
+## Source repair scope
+
+The Free Beta source-fix feature is intentionally narrow. It supports a deterministic WPF XAML target-size fix when the affected control can be matched exactly and the build/rescan verification gates succeed. It is not a general-purpose AI code repair system.
