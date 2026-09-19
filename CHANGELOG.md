@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.4 — 2026-09-20
+
+- Fix slider input testing so the original numeric value is restored and checked; earlier versions could leave the test value in place while reporting success.
+- Clear the previous application's launch arguments and source folder when selecting another executable, while preserving same-file selections and saved Re-scan settings.
+- Fit window minimums and initial dimensions to the available work area, and wrap field labels on narrow displays.
+
+Validation: Release build 0 warnings/errors, 29 executable unit/integration tests and 8 actual WPF behavior groups passed. Slider restoration was reproduced before the fix and verified afterward against independent change history and final UIA state. Actual window dimensions fit 900×560 and 800×500 work areas. The final portable ZIP was freshly extracted and launch/navigation smoke-tested. Physical mixed-DPI transitions and a separate Windows 10 environment remain unvalidated.
+
 ## 0.1.0-beta.3 — 2026-09-20
 
 - Stream HTML report evidence and session JSON to reduce memory allocations while preserving atomic saves and existing data on cancellation or write failure.
