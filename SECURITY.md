@@ -2,7 +2,7 @@
 
 ## Supported version
 
-Security reports for the current public Free Beta, `0.1.0-beta.1`, are welcome.
+Security reports for the latest public Free Beta are welcome. See the [official releases](https://github.com/appdoctorapp/AppDoctor/releases) for the current version, and include the affected version in your report.
 
 ## Reporting a security issue
 
